@@ -1,0 +1,404 @@
+// Version: 3.0.0
+type AiInteraction__174774629 = AiInteraction__550221428;
+type AiInteraction__550221428 =
+  {
+    agentId : ?UserId__699770871;
+    createdAt : Timestamp__755000376;
+    durationSeconds : Nat;
+    id : InteractionId__1041037862;
+    interactionType : InteractionType__779814595;
+    leadId : LeadId__215364720;
+    minutesSaved : Nat;
+    outcome : InteractionOutcome__306595405;
+    summary : Text;
+    tenantId : TenantId__50952420;
+    voiceCall : ?VoiceCallDetail__380199471
+  };
+type AiInteraction__657534798 =
+  {
+    agentId : ?UserId__2049225;
+    createdAt : Timestamp__817121181;
+    durationSeconds : Nat;
+    id : InteractionId__771283591;
+    interactionType : InteractionType__234978618;
+    leadId : LeadId__822086720;
+    minutesSaved : Nat;
+    outcome : InteractionOutcome__762142480;
+    summary : Text;
+    tenantId : TenantId__559729687
+  };
+type AudienceSegment__213333300 =
+  {#aiContacted; #allLeads; #apptBooked; #liveTransferred; #newLeads; #sold};
+type AudienceSegment__394624255 =
+  {#aiContacted; #allLeads; #apptBooked; #liveTransferred; #newLeads; #sold};
+type BillingId__172037232 = BillingId__748868294;
+type BillingId__340436639 = Nat;
+type BillingId__748868294 = Nat;
+type Billing__123409328 =
+  {
+    id : BillingId__748868294;
+    includedMinutes : Nat;
+    invoiceHistory : [InvoiceRecord__224331626];
+    planTier : PlanTier__374306033;
+    tenantId : TenantId__50952420;
+    updatedAt : Timestamp__755000376;
+    usedMinutes : Nat
+  };
+type Billing__530807160 = Billing__123409328;
+type Billing__646868013 =
+  {
+    id : BillingId__340436639;
+    includedMinutes : Nat;
+    invoiceHistory : [InvoiceRecord__35253098];
+    planTier : PlanTier__909967468;
+    tenantId : TenantId__559729687;
+    updatedAt : Timestamp__817121181;
+    usedMinutes : Nat
+  };
+type CampaignId__856687385 = Nat;
+type CampaignId__934140262 = CampaignId__856687385;
+type CampaignId__93627705 = Nat;
+type CampaignStatus__203228236 =
+  {#archived; #completed; #draft; #paused; #running; #scheduled};
+type CampaignStatus__683114675 =
+  {#archived; #completed; #draft; #paused; #running; #scheduled};
+type Data__80296667<K, V> =
+  {var count : Nat__1040412405; kvs : [var ?(K, V)]};
+type InteractionId__1041037862 = Nat;
+type InteractionId__771283591 = Nat;
+type InteractionId__994872794 = InteractionId__1041037862;
+type InteractionOutcome__306595405 =
+  {
+    #booked;
+    #delivered;
+    #failed;
+    #noAnswer;
+    #qualified;
+    #replied;
+    #sent;
+    #transferred
+  };
+type InteractionOutcome__762142480 =
+  {
+    #booked;
+    #delivered;
+    #failed;
+    #noAnswer;
+    #qualified;
+    #replied;
+    #sent;
+    #transferred
+  };
+type InteractionType__234978618 =
+  {#appointmentBooking; #liveTransfer; #textMessage; #voiceCall};
+type InteractionType__779814595 =
+  {#appointmentBooking; #liveTransfer; #textMessage; #voiceCall};
+type Internal__41346355<K, V> =
+  {children : [var ?Node__1000929467<K, V>]; data : Data__80296667<K, V>};
+type InvoiceRecord__224331626 =
+  {
+    amount : Nat;
+    invoiceId : Nat;
+    issuedAt : Timestamp__755000376;
+    paid : Bool
+  };
+type InvoiceRecord__35253098 =
+  {
+    amount : Nat;
+    invoiceId : Nat;
+    issuedAt : Timestamp__817121181;
+    paid : Bool
+  };
+type LeadId__215364720 = Nat;
+type LeadId__250443643 = LeadId__215364720;
+type LeadId__822086720 = Nat;
+type LeadSource__1032506001 =
+  {
+    #aiDialer;
+    #csvImport;
+    #inbound;
+    #outbound;
+    #referral;
+    #smsCampaign;
+    #voiceCampaign;
+    #webForm
+  };
+type LeadSource__977114025 =
+  {
+    #aiDialer;
+    #inbound;
+    #outbound;
+    #referral;
+    #smsCampaign;
+    #voiceCampaign;
+    #webForm
+  };
+type LeadStatus__111393833 =
+  {#aiContacted; #apptBooked; #liveTransferred; #newLead; #sold};
+type LeadStatus__950302492 =
+  {#aiContacted; #apptBooked; #liveTransferred; #newLead; #sold};
+type Lead__6531882 =
+  {
+    annualPremiumValue : Nat;
+    assignedAgentId : ?UserId__2049225;
+    createdAt : Timestamp__817121181;
+    email : Text;
+    id : LeadId__822086720;
+    name : Text;
+    phone : Text;
+    source : LeadSource__977114025;
+    status : LeadStatus__111393833;
+    tenantId : TenantId__559729687;
+    updatedAt : Timestamp__817121181
+  };
+type Lead__820664582 = Lead__88819418;
+type Lead__88819418 =
+  {
+    annualPremiumValue : Nat;
+    assignedAgentId : ?UserId__699770871;
+    createdAt : Timestamp__755000376;
+    email : Text;
+    id : LeadId__215364720;
+    name : Text;
+    phone : Text;
+    source : LeadSource__1032506001;
+    status : LeadStatus__950302492;
+    tenantId : TenantId__50952420;
+    updatedAt : Timestamp__755000376
+  };
+type Leaf__712614010<K, V> = {data : Data__80296667<K, V>};
+type List__529703492<T> =
+  {
+    var blockIndex : Nat__1040412405;
+    var blocks : [var [var ?T]];
+    var elementIndex : Nat__1040412405
+  };
+type List__560604548<T> = List__529703492<T>;
+type LiveEventSource__489742888 =
+  {
+    #aiDialer;
+    #aiTextSetter;
+    #aiVoiceRouter;
+    #smsCampaign;
+    #sys;
+    #voiceCampaign
+  };
+type LiveEventSource__542265128 =
+  {
+    #aiDialer;
+    #aiTextSetter;
+    #aiVoiceRouter;
+    #smsCampaign;
+    #sys;
+    #voiceCampaign
+  };
+type LiveEvent__189112774 =
+  {
+    createdAt : Timestamp__755000376;
+    id : Nat;
+    message : Text;
+    source : LiveEventSource__489742888;
+    tenantId : TenantId__50952420
+  };
+type LiveEvent__435831700 =
+  {
+    createdAt : Timestamp__817121181;
+    id : Nat;
+    message : Text;
+    source : LiveEventSource__542265128;
+    tenantId : TenantId__559729687
+  };
+type LiveEvent__867795451 = LiveEvent__189112774;
+type Map__222667396<K, V> = Map__912772452<K, V>;
+type Map__709709801<K, V> =
+  {var root : Node__1000929467<K, V>; var size : Nat__1040412405};
+type Map__912772452<K, V> = Map__709709801<K, V>;
+type Nat__1040412405 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__1000929467<K, V> =
+  {#internal : Internal__41346355<K, V>; #leaf : Leaf__712614010<K, V>};
+type OldState__853343916 =
+  {
+    aiInteractions :
+      Map__222667396<InteractionId__771283591, AiInteraction__657534798>;
+    billing : Map__222667396<TenantId__559729687, Billing__646868013>;
+    leads : Map__222667396<LeadId__822086720, Lead__6531882>;
+    liveEvents : List__560604548<LiveEvent__435831700>;
+    var nextBillingId : BillingId__340436639;
+    var nextCampaignId : CampaignId__93627705;
+    var nextInteractionId : InteractionId__771283591;
+    var nextInvoiceId : Nat;
+    var nextLeadId : LeadId__822086720;
+    var nextLiveEventId : Nat;
+    var nextTenantId : TenantId__559729687;
+    var nextUserId : UserId__2049225;
+    smsCampaigns :
+      Map__222667396<CampaignId__93627705, SmsCampaign__640344139>;
+    tenants : Map__222667396<TenantId__559729687, Tenant__217665749>;
+    var timeSavedByAi : Map__222667396<TenantId__559729687, Nat>;
+    users : Map__222667396<UserId__2049225, User__177735871>;
+    voiceCampaigns :
+      Map__222667396<CampaignId__93627705, OldVoiceCampaign__417256118>
+  };
+type OldVoiceAgentConfig__826765060 =
+  {agentName : Text; language : Text; voiceId : Text; voiceProvider : Text};
+type OldVoiceCampaign__417256118 =
+  {
+    callsPlaced : Nat;
+    createdAt : Timestamp__817121181;
+    id : CampaignId__93627705;
+    minutesSaved : Nat;
+    name : Text;
+    qualifiedTransfers : Nat;
+    status : CampaignStatus__683114675;
+    targetSegment : AudienceSegment__394624255;
+    tenantId : TenantId__559729687;
+    voiceAgent : OldVoiceAgentConfig__826765060
+  };
+type PlanTier__374306033 = {#enterprise; #growth; #scale; #starter};
+type PlanTier__909967468 = {#enterprise; #growth; #scale; #starter};
+type Role__139301223 = {#admin; #agent; #manager};
+type Role__220771457 = {#admin; #agent; #manager};
+type SmsCampaign__640344139 =
+  {
+    audienceSegment : AudienceSegment__394624255;
+    createdAt : Timestamp__817121181;
+    id : CampaignId__93627705;
+    messageTemplate : Text;
+    name : Text;
+    responseCount : Nat;
+    sentCount : Nat;
+    status : CampaignStatus__683114675;
+    tenantId : TenantId__559729687
+  };
+type SmsCampaign__703397604 = SmsCampaign__793937746;
+type SmsCampaign__793937746 =
+  {
+    audienceSegment : AudienceSegment__213333300;
+    createdAt : Timestamp__755000376;
+    id : CampaignId__856687385;
+    messageTemplate : Text;
+    name : Text;
+    responseCount : Nat;
+    sentCount : Nat;
+    status : CampaignStatus__203228236;
+    tenantId : TenantId__50952420
+  };
+type TenantId__50952420 = Nat;
+type TenantId__559729687 = Nat;
+type TenantId__875052276 = TenantId__50952420;
+type Tenant__217665749 =
+  {
+    agencyName : Text;
+    createdAt : Timestamp__817121181;
+    id : TenantId__559729687;
+    planTier : PlanTier__909967468;
+    primaryContact : Text
+  };
+type Tenant__404782515 = Tenant__921835292;
+type Tenant__921835292 =
+  {
+    agencyName : Text;
+    createdAt : Timestamp__755000376;
+    id : TenantId__50952420;
+    planTier : PlanTier__374306033;
+    primaryContact : Text;
+    voiceAgent : VoiceAgentConfig__30408885
+  };
+type Timestamp__755000376 = Int;
+type Timestamp__817121181 = Int;
+type UserId__2049225 = Nat;
+type UserId__263845229 = UserId__699770871;
+type UserId__699770871 = Nat;
+type UserRole__686137147 = {#admin; #guest; #user};
+type UserStatus__402708734 = {#away; #offline; #online};
+type UserStatus__517214445 = {#away; #offline; #online};
+type User__177735871 =
+  {
+    createdAt : Timestamp__817121181;
+    email : Text;
+    id : UserId__2049225;
+    name : Text;
+    principal : Principal;
+    role : Role__139301223;
+    status : UserStatus__402708734;
+    tenantId : TenantId__559729687
+  };
+type User__517523944 =
+  {
+    createdAt : Timestamp__755000376;
+    email : Text;
+    id : UserId__699770871;
+    name : Text;
+    principal : Principal;
+    role : Role__220771457;
+    status : UserStatus__517214445;
+    tenantId : TenantId__50952420
+  };
+type User__711526384 = User__517523944;
+type VoiceAgentConfig__30408885 =
+  {
+    agentName : Text;
+    apiKey : Text;
+    language : Text;
+    model : Text;
+    transferPhoneNumber : Text;
+    voiceId : Text;
+    voiceProvider : Text;
+    voiceSettings : Text
+  };
+type VoiceCallDetail__380199471 =
+  {callId : Text; duration : Nat; status : VoiceCallStatus__567453149};
+type VoiceCallStatus__567453149 = {#completed; #failed; #initiated};
+type VoiceCampaign__741497685 =
+  {
+    callsPlaced : Nat;
+    createdAt : Timestamp__755000376;
+    id : CampaignId__856687385;
+    minutesSaved : Nat;
+    name : Text;
+    qualifiedTransfers : Nat;
+    status : CampaignStatus__203228236;
+    targetSegment : AudienceSegment__213333300;
+    targetStatus : LeadStatus__950302492;
+    tenantId : TenantId__50952420;
+    voiceAgent : VoiceAgentConfig__30408885
+  };
+type VoiceCampaign__888766827 = VoiceCampaign__741497685;
+actor ({
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__222667396<Principal, UserRole__686137147>
+    };
+  in state : OldState__853343916
+}, {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__222667396<Principal, UserRole__686137147>
+    };
+  stable state :
+    {
+      aiInteractions :
+        Map__222667396<InteractionId__994872794, AiInteraction__174774629>;
+      billing : Map__222667396<TenantId__875052276, Billing__530807160>;
+      leads : Map__222667396<LeadId__250443643, Lead__820664582>;
+      liveEvents : List__560604548<LiveEvent__867795451>;
+      var nextBillingId : BillingId__172037232;
+      var nextCampaignId : CampaignId__934140262;
+      var nextInteractionId : InteractionId__994872794;
+      var nextInvoiceId : Nat;
+      var nextLeadId : LeadId__250443643;
+      var nextLiveEventId : Nat;
+      var nextTenantId : TenantId__875052276;
+      var nextUserId : UserId__263845229;
+      smsCampaigns :
+        Map__222667396<CampaignId__934140262, SmsCampaign__703397604>;
+      tenants : Map__222667396<TenantId__875052276, Tenant__404782515>;
+      var timeSavedByAi : Map__222667396<TenantId__875052276, Nat>;
+      users : Map__222667396<UserId__263845229, User__711526384>;
+      voiceCampaigns :
+        Map__222667396<CampaignId__934140262, VoiceCampaign__888766827>
+    }
+});

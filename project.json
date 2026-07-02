@@ -1,0 +1,22 @@
+{
+  "overview": "StrataFi is a multi-tenant CRM for insurance agencies with AI voice calling, a drag-and-drop lead pipeline, and CSV bulk lead import.",
+  "features": [
+    "AI voice provider integration with live outbound calls",
+    "Drag-and-drop kanban pipeline board for lead management",
+    "CSV import for bulk lead uploads with validation preview",
+    "Lead detail editing with interaction timeline",
+    "Multi-tenant backend with tenant switching and onboarding",
+    "Dark-mode StrataFi design system with green and blue accents",
+    "Mock data seeded so all pages load populated"
+  ],
+  "category": "productivity",
+  "tags": [
+    "crm",
+    "ai-voice",
+    "pipeline",
+    "leads",
+    "multi-tenant",
+    "dark-mode"
+  ],
+  "last_updated": "2026-06-29T00:41:05.192Z"
+}

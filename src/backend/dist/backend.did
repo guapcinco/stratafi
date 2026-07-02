@@ -1,0 +1,396 @@
+type VoiceCampaign = 
+ record {
+   callsPlaced: nat;
+   createdAt: Timestamp;
+   id: CampaignId;
+   minutesSaved: nat;
+   name: text;
+   qualifiedTransfers: nat;
+   status: CampaignStatus;
+   targetSegment: AudienceSegment;
+   targetStatus: LeadStatus;
+   tenantId: TenantId;
+   voiceAgent: VoiceAgentConfig;
+ };
+type VoiceCallStatus = 
+ variant {
+   completed;
+   failed;
+   initiated;
+ };
+type VoiceCallResult = 
+ record {
+   callId: text;
+   error: opt text;
+   status: variant {
+             failed;
+             initiated;
+           };
+ };
+type VoiceCallRequest = 
+ record {
+   language: text;
+   leadId: LeadId;
+   task: text;
+   tenantId: TenantId;
+   transferPhoneNumber: text;
+   voiceId: text;
+ };
+type VoiceCallDetail = 
+ record {
+   callId: text;
+   duration: nat;
+   status: VoiceCallStatus;
+ };
+type VoiceAgentConfig = 
+ record {
+   agentName: text;
+   apiKey: text;
+   language: text;
+   model: text;
+   transferPhoneNumber: text;
+   voiceId: text;
+   voiceProvider: text;
+   voiceSettings: text;
+ };
+type UserStatus = 
+ variant {
+   away;
+   offline;
+   online;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserId = nat;
+type User = 
+ record {
+   createdAt: Timestamp;
+   email: text;
+   id: UserId;
+   name: text;
+   "principal": principal;
+   role: Role;
+   status: UserStatus;
+   tenantId: TenantId;
+ };
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec HttpHeader;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: HttpRequestResult;
+ };
+type Timestamp = int;
+type TenantId = nat;
+type Tenant = 
+ record {
+   agencyName: text;
+   createdAt: Timestamp;
+   id: TenantId;
+   planTier: PlanTier;
+   primaryContact: text;
+   voiceAgent: VoiceAgentConfig;
+ };
+type SmsCampaign = 
+ record {
+   audienceSegment: AudienceSegment;
+   createdAt: Timestamp;
+   id: CampaignId;
+   messageTemplate: text;
+   name: text;
+   responseCount: nat;
+   sentCount: nat;
+   status: CampaignStatus;
+   tenantId: TenantId;
+ };
+type Role = 
+ variant {
+   admin;
+   agent;
+   manager;
+ };
+type Result = 
+ variant {
+   err: Error;
+   ok;
+ };
+type PlanTier = 
+ variant {
+   enterprise;
+   growth;
+   scale;
+   starter;
+ };
+type LiveEventSource = 
+ variant {
+   aiDialer;
+   aiTextSetter;
+   aiVoiceRouter;
+   smsCampaign;
+   sys;
+   voiceCampaign;
+ };
+type LiveEvent = 
+ record {
+   createdAt: Timestamp;
+   id: nat;
+   message: text;
+   source: LiveEventSource;
+   tenantId: TenantId;
+ };
+type LeadStatus = 
+ variant {
+   aiContacted;
+   apptBooked;
+   liveTransferred;
+   newLead;
+   sold;
+ };
+type LeadSource = 
+ variant {
+   aiDialer;
+   csvImport;
+   inbound;
+   outbound;
+   referral;
+   smsCampaign;
+   voiceCampaign;
+   webForm;
+ };
+type LeadId = nat;
+type Lead = 
+ record {
+   annualPremiumValue: nat;
+   assignedAgentId: opt UserId;
+   createdAt: Timestamp;
+   email: text;
+   id: LeadId;
+   name: text;
+   phone: text;
+   source: LeadSource;
+   status: LeadStatus;
+   tenantId: TenantId;
+   updatedAt: Timestamp;
+ };
+type InvoiceRecord = 
+ record {
+   amount: nat;
+   invoiceId: nat;
+   issuedAt: Timestamp;
+   paid: bool;
+ };
+type InteractionType = 
+ variant {
+   appointmentBooking;
+   liveTransfer;
+   textMessage;
+   voiceCall;
+ };
+type InteractionOutcome = 
+ variant {
+   booked;
+   delivered;
+   failed;
+   noAnswer;
+   qualified;
+   replied;
+   sent;
+   transferred;
+ };
+type InteractionId = nat;
+type HttpRequestResult = 
+ record {
+   body: blob;
+   headers: vec HttpHeader;
+   status: nat;
+ };
+type HttpHeader = 
+ record {
+   name: text;
+   value: text;
+ };
+type Error = 
+ variant {
+   AmbiguousAttribute: record {
+                         field: text;
+                         sources: vec text;
+                       };
+   FrontendOriginMismatch: record {
+                             expected: vec text;
+                             got: text;
+                           };
+   FrontendOriginsNotConfigured;
+   MalformedCandid;
+   MissingField: text;
+   MixedSsoSources: record {
+                      otherKeys: vec text;
+                      ssoKeys: vec text;
+                    };
+   NoAttributes;
+   Stale: record {ageNs: nat;};
+   UnknownNonce;
+   UntrustedSsoSource: record {domain: text;};
+ };
+type DashboardSummary = 
+ record {
+   activeAgentsOnline: nat;
+   activeAgentsPercentage: float64;
+   timeSavedByAiMinutes: nat;
+   totalAgents: nat;
+   totalLeads: nat;
+ };
+type ColumnChartMetric = 
+ record {
+   apptsBooked: nat;
+   callsAi: nat;
+   leadsSold: nat;
+   liveTransfers: nat;
+   smsSent: nat;
+ };
+type CampaignStatus = 
+ variant {
+   archived;
+   completed;
+   draft;
+   paused;
+   running;
+   scheduled;
+ };
+type CampaignId = nat;
+type BulkLeadInput = 
+ record {
+   annualPremiumValue: opt nat;
+   assignedAgentId: opt UserId;
+   email: opt text;
+   name: text;
+   phone: text;
+   source: opt LeadSource;
+   status: opt LeadStatus;
+ };
+type BulkImportResult = 
+ record {
+   createdIds: vec nat;
+   errors: vec text;
+ };
+type BillingId = nat;
+type Billing = 
+ record {
+   id: BillingId;
+   includedMinutes: nat;
+   invoiceHistory: vec InvoiceRecord;
+   planTier: PlanTier;
+   tenantId: TenantId;
+   updatedAt: Timestamp;
+   usedMinutes: nat;
+ };
+type AudienceSegment = 
+ variant {
+   aiContacted;
+   allLeads;
+   apptBooked;
+   liveTransferred;
+   newLeads;
+   sold;
+ };
+type AiInteraction = 
+ record {
+   agentId: opt UserId;
+   createdAt: Timestamp;
+   durationSeconds: nat;
+   id: InteractionId;
+   interactionType: InteractionType;
+   leadId: LeadId;
+   minutesSaved: nat;
+   outcome: InteractionOutcome;
+   summary: text;
+   tenantId: TenantId;
+   voiceCall: opt VoiceCallDetail;
+ };
+service : {
+  __accessControlState: () -> (reserved) query;
+  __state: () -> (reserved) query;
+  _initialize_access_control: () -> ();
+  _internet_identity_sign_in_finish: () -> (Result);
+  _internet_identity_sign_in_start: () -> (blob);
+  addInvoice: (tenantId: TenantId, amount: nat) -> (opt Billing);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  bulkImportLeads: (tenantId: TenantId, inputs: vec BulkLeadInput) ->
+   (BulkImportResult);
+  createAiInteraction: (tenantId: TenantId, leadId: LeadId, agentId:
+   opt UserId, interactionType: InteractionType, outcome: InteractionOutcome,
+   durationSeconds: nat, summary: text) -> (AiInteraction);
+  createLead: (tenantId: TenantId, name: text, phone: text, email: text,
+   source: LeadSource, annualPremiumValue: nat, assignedAgentId:
+   opt UserId) -> (Lead);
+  createSmsCampaign: (tenantId: TenantId, name: text, audienceSegment:
+   AudienceSegment, messageTemplate: text) -> (SmsCampaign);
+  createTenant: (agencyName: text, primaryContact: text, planTier:
+   PlanTier) -> (Tenant);
+  createUser: (tenantId: TenantId, "principal": principal, name: text, email:
+   text, role: Role) -> (User);
+  createVoiceCampaign: (tenantId: TenantId, name: text, targetSegment:
+   AudienceSegment, targetStatus: LeadStatus, voiceAgent:
+   VoiceAgentConfig) -> (VoiceCampaign);
+  deleteAiInteraction: (id: InteractionId) -> (bool);
+  deleteLead: (id: LeadId) -> (bool);
+  deleteSmsCampaign: (id: CampaignId) -> (bool);
+  deleteTenant: (id: TenantId) -> (bool);
+  deleteUser: (id: UserId) -> (bool);
+  deleteVoiceCampaign: (id: CampaignId) -> (bool);
+  getAiInteraction: (id: InteractionId) -> (opt AiInteraction) query;
+  getBilling: (tenantId: TenantId) -> (opt Billing) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getColumnChartMetrics: (tenantId: TenantId) -> (ColumnChartMetric) query;
+  getDashboardSummary: (tenantId: TenantId) -> (DashboardSummary) query;
+  getLead: (id: LeadId) -> (opt Lead) query;
+  getLiveEventStream: (tenantId: TenantId, limit: nat) ->
+   (vec LiveEvent) query;
+  getSmsCampaign: (id: CampaignId) -> (opt SmsCampaign) query;
+  getTenant: (id: TenantId) -> (opt Tenant) query;
+  getUser: (id: UserId) -> (opt User) query;
+  getVoiceCampaign: (id: CampaignId) -> (opt VoiceCampaign) query;
+  isCallerAdmin: () -> (bool) query;
+  launchVoiceCampaign: (tenantId: TenantId, campaignId: CampaignId) ->
+   (vec VoiceCallResult);
+  listAiInteractionsByLead: (leadId: LeadId) -> (vec AiInteraction) query;
+  listAiInteractionsByTenant: (tenantId: TenantId) ->
+   (vec AiInteraction) query;
+  listLeadsByStatus: (tenantId: TenantId, status: LeadStatus) ->
+   (vec Lead) query;
+  listLeadsByTenant: (tenantId: TenantId) -> (vec Lead) query;
+  listSmsCampaignsByTenant: (tenantId: TenantId) -> (vec SmsCampaign) query;
+  listTenants: () -> (vec Tenant) query;
+  listUsersByTenant: (tenantId: TenantId) -> (vec User) query;
+  listVoiceCampaignsByTenant: (tenantId: TenantId) ->
+   (vec VoiceCampaign) query;
+  placeVoiceCall: (request: VoiceCallRequest) -> (VoiceCallResult);
+  recordBillingUsage: (tenantId: TenantId, usedMinutesDelta: nat) ->
+   (opt Billing);
+  seedMockData: () -> ();
+  transform: (input: TransformationInput) -> (TransformationOutput) query;
+  updateAiInteraction: (id: InteractionId, outcome: InteractionOutcome,
+   durationSeconds: nat, summary: text) -> (opt AiInteraction);
+  updateBillingPlan: (tenantId: TenantId, planTier: PlanTier,
+   includedMinutes: nat) -> (opt Billing);
+  updateLead: (id: LeadId, name: text, phone: text, email: text, source:
+   LeadSource, annualPremiumValue: nat, status: LeadStatus, assignedAgentId:
+   opt UserId) -> (opt Lead);
+  updateSmsCampaign: (id: CampaignId, name: text, status: CampaignStatus,
+   audienceSegment: AudienceSegment, messageTemplate: text) ->
+   (opt SmsCampaign);
+  updateTenant: (id: TenantId, agencyName: text, primaryContact: text,
+   planTier: PlanTier, voiceAgent: VoiceAgentConfig) -> (opt Tenant);
+  updateUser: (id: UserId, name: text, email: text, role: Role, status:
+   UserStatus) -> (opt User);
+  updateVoiceCampaign: (id: CampaignId, name: text, status: CampaignStatus,
+   targetSegment: AudienceSegment, targetStatus: LeadStatus, voiceAgent:
+   VoiceAgentConfig) -> (opt VoiceCampaign);
+}
